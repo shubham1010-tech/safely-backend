@@ -1,0 +1,337 @@
+Act as a world-class senior backend engineer and hackathon architect.
+
+Build a premium, production-style backend for an AI-powered scam awareness platform called "SafeLy".
+
+PROJECT OVERVIEW:
+SafeLy is an interactive cybersecurity education platform that trains users to identify and avoid online scams through real-world simulations.
+
+The backend should feel like a startup-grade API system while still remaining lightweight enough for a hackathon MVP.
+
+GOAL:
+Build a clean, scalable, modular, professional backend that:
+
+* powers scam simulations
+* provides AI-style scam analysis
+* tracks user progress
+* integrates easily with a modern frontend
+* deploys smoothly on Replit
+
+TECH STACK:
+
+* Node.js
+* Express.js
+* CORS
+* dotenv
+* Morgan logger
+* Nodemon
+* Modular folder structure
+* REST API architecture
+
+OPTIONAL:
+
+* Gemini/OpenAI integration placeholder
+* In-memory mock database (no real DB required yet)
+
+====================================================
+PROJECT STRUCTURE
+=================
+
+Create the backend with this professional structure:
+
+safely-backend/
+│
+├── server.js
+├── package.json
+├── .env
+│
+├── routes/
+│   ├── analyzeRoutes.js
+│   ├── chatRoutes.js
+│   ├── dashboardRoutes.js
+│
+├── controllers/
+│   ├── analyzeController.js
+│   ├── chatController.js
+│   ├── dashboardController.js
+│
+├── middleware/
+│   ├── errorMiddleware.js
+│
+├── utils/
+│   ├── scamDetector.js
+│
+└── data/
+├── mockData.js
+
+====================================================
+SETUP REQUIREMENTS
+==================
+
+1. Configure Express server professionally:
+
+* express.json()
+* cors()
+* morgan("dev")
+* global error middleware
+* environment variables support
+* process.env.PORT || 3000
+
+2. Add proper status codes and JSON responses.
+
+3. Add timestamps in API responses.
+
+4. Add clean console logs for debugging.
+
+====================================================
+API REQUIREMENTS
+================
+
+---
+
+1. HEALTH CHECK API
+
+---
+
+ROUTE:
+GET /api/health
+
+PURPOSE:
+Verify backend is running.
+
+RESPONSE:
+{
+"success": true,
+"status": "running",
+"message": "SafeLy backend is active",
+"timestamp": "2026-05-06T10:00:00Z"
+}
+
+====================================================
+
+---
+
+2. SCAM SIMULATION ANALYSIS API
+
+---
+
+ROUTE:
+POST /api/analyze
+
+PURPOSE:
+Analyze the user's decision during a phishing simulation.
+
+REQUEST BODY:
+{
+"choice": "click"
+}
+
+LOGIC:
+IF:
+
+* choice = "click"
+
+RETURN:
+{
+"success": false,
+"riskLevel": "HIGH",
+"result": "❌ This was a phishing scam!",
+"explanation": "The message used urgency and a suspicious verification link.",
+"tips": [
+"Never click suspicious links",
+"Check the sender domain carefully",
+"Banks never ask for verification via email",
+"Look for spelling mistakes in URLs"
+],
+"timestamp": "..."
+}
+
+IF:
+
+* choice = "ignore"
+  OR
+* choice = "report"
+
+RETURN:
+{
+"success": true,
+"riskLevel": "SAFE",
+"result": "✅ Great decision! You avoided the scam.",
+"tips": [
+"Always verify suspicious messages",
+"Report phishing attempts immediately"
+],
+"timestamp": "..."
+}
+
+====================================================
+
+---
+
+3. AI CHAT ASSISTANT API
+
+---
+
+ROUTE:
+POST /api/chat
+
+PURPOSE:
+Analyze suspicious user messages using AI-style logic.
+
+REQUEST BODY:
+{
+"message": "Your account is blocked. Click here immediately."
+}
+
+LOGIC:
+Create a smart keyword-based scam detector using:
+
+* urgent
+* verify
+* blocked
+* click here
+* OTP
+* account suspended
+* reward
+* free money
+
+If suspicious keywords detected:
+Return warning response.
+
+EXAMPLE RESPONSE:
+{
+"success": true,
+"isScam": true,
+"riskLevel": "HIGH",
+"reply": "⚠️ This message appears suspicious because it creates urgency and asks you to click a link.",
+"detectedKeywords": ["blocked", "click here"],
+"safetyTips": [
+"Do not share OTPs",
+"Avoid clicking unknown URLs",
+"Verify through official websites"
+],
+"timestamp": "..."
+}
+
+IF SAFE:
+Return educational safe response.
+
+====================================================
+
+---
+
+4. USER DASHBOARD API
+
+---
+
+ROUTE:
+GET /api/dashboard
+
+PURPOSE:
+Return mock user learning progress.
+
+RESPONSE:
+{
+"success": true,
+"data": {
+"score": 75,
+"badge": "Aware User",
+"scamsDetected": 12,
+"mistakesMade": 3,
+"progress": {
+"phishing": 85,
+"otpFraud": 70,
+"fakeLinks": 60
+},
+"recentActivity": [
+"Detected phishing email",
+"Reported fake SMS",
+"Avoided suspicious link"
+]
+}
+}
+
+====================================================
+SCAM DETECTION UTILITY
+======================
+
+Create:
+utils/scamDetector.js
+
+FUNCTION:
+
+* Detect suspicious keywords
+* Return:
+
+  * detected keywords
+  * scam probability
+  * educational explanation
+
+====================================================
+ERROR HANDLING
+==============
+
+Create global error middleware:
+middleware/errorMiddleware.js
+
+Requirements:
+
+* Handle invalid routes
+* Handle server errors
+* Return clean JSON error responses
+
+====================================================
+PACKAGE.JSON REQUIREMENTS
+=========================
+
+Include:
+
+* express
+* cors
+* dotenv
+* morgan
+* nodemon
+
+Scripts:
+"start"
+"dev"
+
+====================================================
+DEPLOYMENT REQUIREMENTS
+=======================
+
+Backend must:
+
+* run perfectly on Replit
+* support frontend integration from Vercel
+* allow CORS requests from frontend
+* remain lightweight and fast
+
+====================================================
+IMPORTANT INSTRUCTIONS
+======================
+
+* Keep code modular and professional
+* Write beginner-friendly comments
+* Avoid unnecessary complexity
+* Do not add authentication yet
+* Do not add database yet
+* Focus on hackathon demo stability
+* Ensure APIs are frontend-ready
+
+====================================================
+OUTPUT FORMAT
+=============
+
+Provide:
+
+1. Full package.json
+2. Complete server.js
+3. All route files
+4. All controller files
+5. Utility functions
+6. Middleware
+7. Replit setup instructions
+8. Example frontend fetch requests
+9. API testing examples
+
+The final output should feel like a real startup backend built by a professional developer.
