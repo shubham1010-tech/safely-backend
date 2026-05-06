@@ -175,6 +175,10 @@ app.get("/api/dashboard", (_req, res) => {
   });
 });
 
+app.get("/", (_req, res) => {
+  res.redirect("/api");
+});
+
 app.use((_req, res) => {
   res.status(404).json({
     success: false,
