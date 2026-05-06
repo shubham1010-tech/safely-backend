@@ -19,7 +19,8 @@ const PHISHING_TIPS = [
 ];
 
 router.post("/analyze", (req: Request, res: Response) => {
-  const { choice } = req.body as { choice?: string };
+  const body = (req.body ?? {}) as { choice?: string };
+  const { choice } = body;
 
   if (!choice || typeof choice !== "string") {
     res.status(400).json({

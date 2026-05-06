@@ -18,7 +18,8 @@ const SAFE_SAFETY_TIPS = [
 ];
 
 router.post("/chat", (req: Request, res: Response) => {
-  const { message } = req.body as { message?: string };
+  const body = (req.body ?? {}) as { message?: string };
+  const { message } = body;
 
   if (!message || typeof message !== "string" || message.trim().length === 0) {
     res.status(400).json({
